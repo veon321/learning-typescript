@@ -1,4 +1,4 @@
-const logAge = (age: number) => {
+const logAge = (age: number | string) => {
   console.log(`Hej mam ${age} lat!`);
 };
 
