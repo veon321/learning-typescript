@@ -1,6 +1,13 @@
-"use strict";
-const logAge = (age) => {
-    console.log(`Hej mam ${age} lat!`);
+const buttonElement = document.getElementById("buy");
+
+const calculatePrice = (originalPrice, hasDiscount) => {
+  return hasDiscount ? originalPrice * 0.8 : originalPrice;
 };
-logAge(18);
-logAge("dwadziescia osiem");
+
+buttonElement.addEventListener("click", () => {
+  const originalPrice = 50;
+  const hasDiscount = new URLSearchParams(window.location.search).get(
+    "discount",
+  );
+  console.log(calculatePrice(originalPrice, hasDiscount));
+});
