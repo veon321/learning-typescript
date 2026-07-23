@@ -7,8 +7,25 @@
 // Wyrzucić śmieci
 // Pójść na siłownie
 // Nakarmić koty
+const tasksContainerElement = document.querySelector(".tasks");
+const addButton = document.getElementById("add");
+const input = document.querySelector(".name");
 const tasks = [
     "Wyrzucić śmieci",
     "Pójść na siłownie",
     "Nakarmić koty",
 ];
+const render = () => {
+    tasks.forEach((task) => {
+        const taskElement = document.createElement("li");
+        taskElement.innerHTML = task;
+        tasksContainerElement.appendChild(taskElement);
+    });
+};
+render();
+addButton.addEventListener("click", () => {
+    const task = input.textContent;
+    tasks.push(task);
+    input.value = "";
+    render();
+});
