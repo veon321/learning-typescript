@@ -1,22 +1,7 @@
-/*        <li>
-          <label for="task-1">Wyrzucić śmieci</label>
-          <input type="checkbox" id="task-1" name="Wyrzucić śmieci" />
-        </li>
-      */
-
-// Wyrzucić śmieci
-// Pójść na siłownie
-// Nakarmić koty
-
-const tasksContainerElement = document.querySelector(".tasks") as HTMLElement;
-const addButton = document.getElementById("add") as HTMLButtonElement;
-const input = document.querySelector(".name") as HTMLInputElement;
-
-const tasks: string[] = [
-  "Wyrzucić śmieci",
-  "Pójść na siłownie",
-  "Nakarmić koty",
-];
+const tasksContainerElement = document.querySelector(".tasks");
+const addButton = document.getElementById("add");
+const input = document.querySelector(".name");
+const tasks = ["Wyrzucić śmieci", "Pójść na siłownie", "Nakarmić koty"];
 
 const render = () => {
   tasksContainerElement.innerHTML = "";
@@ -28,10 +13,13 @@ const render = () => {
 };
 render();
 
-addButton.addEventListener("click", () => {
-  const task = input.value.trim();
-  if (!task) return;
+const addTask = (task: string) => {
   tasks.push(task);
+};
+
+addButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  addTask(input.value);
   input.value = "";
   render();
 });
