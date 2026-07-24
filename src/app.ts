@@ -1,7 +1,13 @@
-const tasksContainerElement = document.querySelector(".tasks");
-const addButton = document.getElementById("add");
-const input = document.querySelector(".name");
-const tasks = ["Wyrzucić śmieci", "Pójść na siłownie", "Nakarmić koty"];
+const tasksContainerElement = document.querySelector(".tasks") as HTMLElement;
+const addButton = document.getElementById("add") as HTMLButtonElement;
+const input = document.querySelector(".name") as HTMLInputElement;
+
+const tasks: string[] = [
+  "Wyrzucić śmieci",
+  "Pójść na siłownie",
+  "Nakarmić koty",
+  "zjesc",
+];
 
 const render = () => {
   tasksContainerElement.innerHTML = "";
@@ -19,7 +25,9 @@ const addTask = (task: string) => {
 
 addButton.addEventListener("click", (event) => {
   event.preventDefault();
-  addTask(input.value);
+  const task = input.value.trim();
+  if (!task) return;
+  addTask(task);
   input.value = "";
   render();
 });
