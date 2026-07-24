@@ -7,6 +7,7 @@ const tasks: string[] = [
   "Pójść na siłownie",
   "Nakarmić koty",
   "zjesc",
+  "napic sie",
 ];
 
 const render = () => {
