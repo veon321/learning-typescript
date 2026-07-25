@@ -7,15 +7,29 @@ const tasks: {
   done: boolean;
 }[] = [
   { name: "Wyrzucić śmieci", done: false },
-  { name: "Pójść na siłownie", done: false },
+  { name: "Pójść na siłownie", done: true },
   { name: "Nakarmić koty", done: false },
 ];
 
 const render = () => {
   tasksContainerElement.innerHTML = "";
-  tasks.forEach((task) => {
+  tasks.forEach((task, index) => {
     const taskElement = document.createElement("li");
-    taskElement.textContent = task.name;
+
+    const id: string = `task-${index}`;
+    const labelElement: HTMLLabelElement = document.createElement("label");
+    labelElement.innerText = task.name;
+    labelElement.setAttribute("for", id);
+
+    const checkboxElement: HTMLInputElement = document.createElement("input");
+    checkboxElement.type = "checkbox";
+    checkboxElement.name = task.name;
+    checkboxElement.id = id;
+    checkboxElement.checked = task.done;
+
+    taskElement.appendChild(labelElement);
+    taskElement.appendChild(checkboxElement);
+
     tasksContainerElement.appendChild(taskElement);
   });
 };

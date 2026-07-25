@@ -4,14 +4,24 @@ const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
 const tasks = [
     { name: "Wyrzucić śmieci", done: false },
-    { name: "Pójść na siłownie", done: false },
+    { name: "Pójść na siłownie", done: true },
     { name: "Nakarmić koty", done: false },
 ];
 const render = () => {
     tasksContainerElement.innerHTML = "";
-    tasks.forEach((task) => {
+    tasks.forEach((task, index) => {
         const taskElement = document.createElement("li");
-        taskElement.textContent = task.name;
+        const id = `task-${index}`;
+        const labelElement = document.createElement("label");
+        labelElement.innerText = task.name;
+        labelElement.setAttribute("for", id);
+        const checkboxElement = document.createElement("input");
+        checkboxElement.type = "checkbox";
+        checkboxElement.name = task.name;
+        checkboxElement.id = id;
+        checkboxElement.checked = task.done;
+        taskElement.appendChild(labelElement);
+        taskElement.appendChild(checkboxElement);
         tasksContainerElement.appendChild(taskElement);
     });
 };
