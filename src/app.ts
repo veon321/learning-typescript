@@ -4,25 +4,25 @@ const input = document.querySelector(".name") as HTMLInputElement;
 
 const tasks: {
   name: string;
-  dane: boolean;
+  done: boolean;
 }[] = [
-  { name: "Wyrzucić śmieci", dane: false },
-  { name: "Pójść na siłownie", dane: false },
-  { name: "Nakarmić koty", dane: false },
+  { name: "Wyrzucić śmieci", done: false },
+  { name: "Pójść na siłownie", done: false },
+  { name: "Nakarmić koty", done: false },
 ];
 
 const render = () => {
   tasksContainerElement.innerHTML = "";
   tasks.forEach((task) => {
     const taskElement = document.createElement("li");
-    taskElement.textContent = task;
+    taskElement.textContent = task.name;
     tasksContainerElement.appendChild(taskElement);
   });
 };
 render();
 
-const addTask = (task: string) => {
-  tasks.push(task);
+const addTask = (taskName: string) => {
+  tasks.push({ name: taskName, done: false });
 };
 
 addButton.addEventListener("click", (event) => {

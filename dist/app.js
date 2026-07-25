@@ -3,21 +3,21 @@ const tasksContainerElement = document.querySelector(".tasks");
 const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
 const tasks = [
-    "Wyrzucić śmieci",
-    "Pójść na siłownie",
-    "Nakarmić koty",
+    { name: "Wyrzucić śmieci", done: false },
+    { name: "Pójść na siłownie", done: false },
+    { name: "Nakarmić koty", done: false },
 ];
 const render = () => {
     tasksContainerElement.innerHTML = "";
     tasks.forEach((task) => {
         const taskElement = document.createElement("li");
-        taskElement.textContent = task;
+        taskElement.textContent = task.name;
         tasksContainerElement.appendChild(taskElement);
     });
 };
 render();
-const addTask = (task) => {
-    tasks.push(task);
+const addTask = (taskName) => {
+    tasks.push({ name: taskName, done: false });
 };
 addButton.addEventListener("click", (event) => {
     event.preventDefault();
