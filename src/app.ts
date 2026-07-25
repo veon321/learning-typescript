@@ -2,13 +2,13 @@ const tasksContainerElement = document.querySelector(".tasks") as HTMLElement;
 const addButton = document.getElementById("add") as HTMLButtonElement;
 const input = document.querySelector(".name") as HTMLInputElement;
 
-const tasks: string[] = [
-  "Wyrzucić śmieci",
-  "Pójść na siłownie",
-  "Nakarmić koty",
-  "zjesc",
-  "napic sie",
-  "wyjsc na dwor",
+const tasks: {
+  name: string;
+  dane: boolean;
+}[] = [
+  { name: "Wyrzucić śmieci", dane: false },
+  { name: "Pójść na siłownie", dane: false },
+  { name: "Nakarmić koty", dane: false },
 ];
 
 const render = () => {
