@@ -38,15 +38,15 @@ const render = () => {
 };
 render();
 
-const addTask = (taskName: string) => {
-  tasks.push({ name: taskName, done: false });
+const addTask = (task: { name: string; done: boolean }) => {
+  tasks.push(task);
 };
 
 addButton.addEventListener("click", (event) => {
   event.preventDefault();
   const task = input.value.trim();
   if (!task) return;
-  addTask(task);
+  addTask({ name: task, done: false });
   input.value = "";
   render();
 });
