@@ -20,6 +20,9 @@ const render = () => {
         checkboxElement.name = task.name;
         checkboxElement.id = id;
         checkboxElement.checked = task.done;
+        checkboxElement.addEventListener("change", () => {
+            task.done = !task.done;
+        });
         taskElement.appendChild(labelElement);
         taskElement.appendChild(checkboxElement);
         tasksContainerElement.appendChild(taskElement);
