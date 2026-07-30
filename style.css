@@ -33,3 +33,8 @@ body {
 .name:focus {
   outline: 2px solid rgba(12, 190, 235, 1);
 }
+
+.gym {
+  color: darkblue;
+  list-style: circle;
+}
