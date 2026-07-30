@@ -5,7 +5,7 @@ const input = document.querySelector(".name") as HTMLInputElement;
 interface Task {
   title: string;
   done: boolean;
-  category: string;
+  category?: string;
 }
 
 const tasks: Task[] = [
@@ -20,7 +20,9 @@ const render = () => {
   tasksContainerElement.innerHTML = "";
   tasks.forEach((task, index) => {
     const taskElement = document.createElement("li");
-
+    if (task.category) {
+      taskElement.classList.add(task.category);
+    }
     const id: string = `task-${index}`;
     const labelElement: HTMLLabelElement = document.createElement("label");
     labelElement.innerText = task.title;
