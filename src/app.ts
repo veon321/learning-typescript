@@ -5,12 +5,13 @@ const input = document.querySelector(".name") as HTMLInputElement;
 interface Task {
   title: string;
   done: boolean;
+  category: string;
 }
 
 const tasks: Task[] = [
-  { title: "Wyrzucić śmieci", done: false },
-  { title: "Pójść na siłownie", done: true },
-  { title: "Nakarmić koty", done: false },
+  { title: "Wyrzucić śmieci", done: false, category: "general" },
+  { title: "Pójść na siłownie", done: true, category: "general" },
+  { title: "Nakarmić koty", done: false, category: "general" },
 ];
 
 const categories: string[] = ["general", "work", "gym", "hobby"];
