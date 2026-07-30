@@ -13,6 +13,8 @@ const tasks: Task[] = [
   { title: "Nakarmić koty", done: false },
 ];
 
+const categories: string[] = ["general", "work", "gym", "hobby"];
+
 const render = () => {
   tasksContainerElement.innerHTML = "";
   tasks.forEach((task, index) => {
