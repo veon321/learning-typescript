@@ -3,9 +3,9 @@ const tasksContainerElement = document.querySelector(".tasks");
 const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
 const tasks = [
-    { title: "Wyrzucić śmieci", done: false, category: "general" },
+    { title: "Wyrzucić śmieci", done: false, category: "hobby" },
     { title: "Pójść na siłownie", done: true, category: "gym" },
-    { title: "Nakarmić koty", done: false, category: "general" },
+    { title: "Nakarmić koty", done: false, category: "work" },
 ];
 const categories = ["general", "work", "gym", "hobby"];
 const render = () => {
