@@ -38,3 +38,11 @@ body {
   color: darkblue;
   list-style: circle;
 }
+
+.hobby {
+  color: darkgoldenrod;
+}
+
+.work {
+  text-decoration: underline;
+}
