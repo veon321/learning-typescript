@@ -2,10 +2,12 @@ const tasksContainerElement = document.querySelector(".tasks") as HTMLElement;
 const addButton = document.getElementById("add") as HTMLButtonElement;
 const input = document.querySelector(".name") as HTMLInputElement;
 
+type Category = "general" | "work" | "gym" | "hobby";
+
 interface Task {
   title: string;
   done: boolean;
-  category?: string;
+  category?: Category;
 }
 
 const tasks: Task[] = [
