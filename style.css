@@ -24,6 +24,7 @@ body {
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.1s ease;
+  width: 100%;
 }
 
 #add:hover {
@@ -45,4 +46,9 @@ body {
 
 .work {
   text-decoration: underline;
+}
+
+.container {
+  border: 1px solid black;
+  padding: 50px;
 }

@@ -32,16 +32,22 @@ const render = () => {
         tasksContainerElement.appendChild(taskElement);
     });
 };
-render();
 const addTask = (task) => {
     tasks.push(task);
 };
 addButton.addEventListener("click", (event) => {
+    const selectedRadioElement = document.querySelector("input[type='radio']:checked");
+    const selectedCategory = selectedRadioElement.value;
     event.preventDefault();
     const task = input.value.trim();
     if (!task)
         return;
-    addTask({ title: task, done: false });
+    addTask({
+        title: input.value,
+        done: false,
+        category: selectedCategory,
+    });
     input.value = "";
     render();
 });
+render();
