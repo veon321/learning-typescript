@@ -37,6 +37,9 @@ const addTask = (task) => {
 };
 addButton.addEventListener("click", (event) => {
     const selectedRadioElement = document.querySelector("input[type='radio']:checked");
+    if (!selectedRadioElement) {
+        throw new Error("No radio button selected");
+    }
     const selectedCategory = selectedRadioElement.value;
     event.preventDefault();
     const task = input.value.trim();
