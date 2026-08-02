@@ -2,6 +2,7 @@
 const tasksContainerElement = document.querySelector(".tasks");
 const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
+const categoriesContainerElement = document.querySelector(".categories");
 const tasks = [
     { title: "Wyrzucić śmieci", done: false, category: "hobby" },
     { title: "Pójść na siłownie", done: true, category: "gym" },
@@ -32,6 +33,22 @@ const render = () => {
         tasksContainerElement.appendChild(taskElement);
     });
 };
+const renderCategories = () => {
+    categories.forEach((category) => {
+        const categoryElement = document.createElement("li");
+        const radioInputElement = document.createElement("input");
+        radioInputElement.type = "radio";
+        radioInputElement.name = "categories";
+        radioInputElement.value = category;
+        radioInputElement.id = `category-${category}`;
+        const labelElement = document.createElement("label");
+        labelElement.setAttribute("for", `category-${category}`);
+        labelElement.innerText = category;
+        categoryElement.appendChild(radioInputElement);
+        categoryElement.appendChild(labelElement);
+        categoriesContainerElement.appendChild(categoryElement);
+    });
+};
 const addTask = (task) => {
     tasks.push(task);
 };
@@ -53,4 +70,5 @@ addButton.addEventListener("click", (event) => {
     input.value = "";
     render();
 });
+renderCategories();
 render();
