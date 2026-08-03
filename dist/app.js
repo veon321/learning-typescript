@@ -3,6 +3,7 @@ const tasksContainerElement = document.querySelector(".tasks");
 const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
 const categoriesContainerElement = document.querySelector(".categories");
+let selectedCategory;
 const tasks = [
     { title: "Wyrzucić śmieci", done: false, category: "hobby" },
     { title: "Pójść na siłownie", done: true, category: "gym" },
@@ -41,6 +42,9 @@ const renderCategories = () => {
         radioInputElement.name = "categories";
         radioInputElement.value = category;
         radioInputElement.id = `category-${category}`;
+        radioInputElement.addEventListener("change", () => {
+            selectedCategory = category;
+        });
         const labelElement = document.createElement("label");
         labelElement.setAttribute("for", `category-${category}`);
         labelElement.innerText = category;
@@ -57,7 +61,6 @@ addButton.addEventListener("click", (event) => {
     if (!selectedRadioElement) {
         throw new Error("No radio button selected");
     }
-    const selectedCategory = selectedRadioElement.value;
     event.preventDefault();
     const task = input.value.trim();
     if (!task)

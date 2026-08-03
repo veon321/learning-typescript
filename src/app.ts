@@ -4,6 +4,7 @@ const input = document.querySelector(".name") as HTMLInputElement;
 const categoriesContainerElement = document.querySelector(
   ".categories",
 ) as HTMLElement;
+let selectedCategory: Category;
 
 type Category = "general" | "work" | "gym" | "hobby";
 
@@ -58,6 +59,9 @@ const renderCategories = () => {
     radioInputElement.name = "categories";
     radioInputElement.value = category;
     radioInputElement.id = `category-${category}`;
+    radioInputElement.addEventListener("change", () => {
+      selectedCategory = category;
+    });
 
     const labelElement: HTMLLabelElement = document.createElement("label");
     labelElement.setAttribute("for", `category-${category}`);
@@ -81,7 +85,6 @@ addButton.addEventListener("click", (event) => {
   if (!selectedRadioElement) {
     throw new Error("No radio button selected");
   }
-  const selectedCategory: Category = selectedRadioElement.value as Category;
   event.preventDefault();
   const task = input.value.trim();
   if (!task) return;
