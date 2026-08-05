@@ -6,7 +6,7 @@ const categoriesContainerElement = document.querySelector(
 ) as HTMLElement;
 let selectedCategory: Category;
 
-type Category = "general" | "work" | "gym" | "hobbny";
+type Category = "general" | "work" | "gym" | "hobby";
 
 interface Task {
   title: string;
