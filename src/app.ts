@@ -5,6 +5,7 @@ const categoriesContainerElement = document.querySelector(
   ".categories",
 ) as HTMLElement;
 let selectedCategory: Category;
+const addText = document.getElementById("addtext") as HTMLInputElement;
 
 type Category = "general" | "work" | "gym" | "hobby";
 
@@ -79,13 +80,15 @@ const addTask = (task: Task) => {
 };
 
 addButton.addEventListener("click", (event) => {
+  event.preventDefault();
   const selectedRadioElement = document.querySelector<HTMLInputElement>(
     "input[type='radio']:checked",
   );
-  if (!selectedRadioElement) {
-    throw new Error("No radio button selected");
+  if (input.value.trim() === "" || !selectedRadioElement) {
+    addText.textContent = "Wybierz opcje lub uzupelnij input!";
+    throw new Error("No radio button selected or input");
   }
-  event.preventDefault();
+  addText.textContent = "Add";
   const task = input.value.trim();
   if (!task) return;
   addTask({

@@ -4,6 +4,7 @@ const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
 const categoriesContainerElement = document.querySelector(".categories");
 let selectedCategory;
+const addText = document.getElementById("addtext");
 const tasks = [
     { title: "Wyrzucić śmieci", done: false, category: "hobby" },
     { title: "Pójść na siłownie", done: true, category: "gym" },
@@ -57,11 +58,13 @@ const addTask = (task) => {
     tasks.push(task);
 };
 addButton.addEventListener("click", (event) => {
-    const selectedRadioElement = document.querySelector("input[type='radio']:checked");
-    if (!selectedRadioElement) {
-        throw new Error("No radio button selected");
-    }
     event.preventDefault();
+    const selectedRadioElement = document.querySelector("input[type='radio']:checked");
+    if (input.value.trim() === "" || !selectedRadioElement) {
+        addText.textContent = "Wybierz opcje lub uzupelnij input!";
+        throw new Error("No radio button selected or input");
+    }
+    addText.textContent = "Add";
     const task = input.value.trim();
     if (!task)
         return;
