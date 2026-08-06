@@ -60,16 +60,14 @@ const addTask = (task) => {
 addButton.addEventListener("click", (event) => {
     event.preventDefault();
     const selectedRadioElement = document.querySelector("input[type='radio']:checked");
-    if (input.value.trim() === "" || !selectedRadioElement) {
-        addText.textContent = "Wybierz opcje lub uzupelnij input!";
-        throw new Error("No radio button selected or input");
-    }
-    addText.textContent = "Add";
     const task = input.value.trim();
-    if (!task)
+    if (task === "" || !selectedRadioElement) {
+        addText.textContent = "Wybierz opcje lub uzupelnij input!";
         return;
+    }
+    addText.textContent = "";
     addTask({
-        title: input.value,
+        title: task,
         done: false,
         category: selectedCategory,
     });
