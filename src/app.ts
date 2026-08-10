@@ -18,7 +18,7 @@ interface Task {
 const tasks: Task[] = [
   { title: "Wyrzucić śmieci", done: false, category: "hobby" },
   { title: "Pójść na siłownie", done: true, category: "gym" },
-  { title: "Nakarmić koty", done: false, category: "workk" },
+  { title: "Nakarmić koty", done: false, category: "work" },
 ];
 
 const categories: Category[] = ["general", "work", "gym", "hobby"];
