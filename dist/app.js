@@ -1,4 +1,3 @@
-"use strict";
 const tasksContainerElement = document.querySelector(".tasks");
 const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
@@ -8,7 +7,7 @@ const addText = document.getElementById("addtext");
 const tasks = [
     { title: "Wyrzucić śmieci", done: false, category: "hobby" },
     { title: "Pójść na siłownie", done: true, category: "gym" },
-    { title: "Nakarmić koty", done: false, category: "work" },
+    { title: "Nakarmić koty", done: true, category: "work" },
 ];
 const categories = ["general", "work", "gym", "hobby"];
 const render = () => {
@@ -76,3 +75,4 @@ addButton.addEventListener("click", (event) => {
 });
 renderCategories();
 render();
+export {};
