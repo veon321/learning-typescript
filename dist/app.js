@@ -1,3 +1,4 @@
+import { render } from "./helpers/render-tasks.helper";
 const tasksContainerElement = document.querySelector(".tasks");
 const addButton = document.getElementById("add");
 const input = document.querySelector(".name");
@@ -10,30 +11,6 @@ const tasks = [
     { title: "Nakarmić koty", done: true, category: "work" },
 ];
 const categories = ["general", "work", "gym", "hobby"];
-const render = () => {
-    tasksContainerElement.innerHTML = "";
-    tasks.forEach((task, index) => {
-        const taskElement = document.createElement("li");
-        if (task.category) {
-            taskElement.classList.add(task.category);
-        }
-        const id = `task-${index}`;
-        const labelElement = document.createElement("label");
-        labelElement.innerText = task.title;
-        labelElement.setAttribute("for", id);
-        const checkboxElement = document.createElement("input");
-        checkboxElement.type = "checkbox";
-        checkboxElement.name = task.title;
-        checkboxElement.id = id;
-        checkboxElement.checked = task.done;
-        checkboxElement.addEventListener("change", () => {
-            task.done = !task.done;
-        });
-        taskElement.appendChild(labelElement);
-        taskElement.appendChild(checkboxElement);
-        tasksContainerElement.appendChild(taskElement);
-    });
-};
 const renderCategories = () => {
     categories.forEach((category) => {
         const categoryElement = document.createElement("li");
@@ -71,8 +48,7 @@ addButton.addEventListener("click", (event) => {
         category: selectedCategory,
     });
     input.value = "";
-    render();
+    render(tasks, tasksContainerElement);
 });
 renderCategories();
-render();
-export {};
+render(tasks, tasksContainerElement);
