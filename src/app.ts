@@ -1,5 +1,6 @@
-import { Task, Category } from "./types/types";
-import { render } from "./helpers/render-tasks.helper";
+import { Task, Category } from "./types/types.js";
+import { render as renderTasks } from "./helpers/render-tasks.helper.js";
+import { render as renderCategories } from "./helpers/render-categories.helpers.js";
 
 const tasksContainerElement = document.querySelector(".tasks") as HTMLElement;
 const addButton = document.getElementById("add") as HTMLButtonElement;
@@ -11,39 +12,25 @@ let selectedCategory: Category;
 const addText = document.getElementById("addtext") as HTMLInputElement;
 
 const tasks: Task[] = [
-  { title: "Wyrzucić śmieci", done: false, category: "hobby" },
-  { title: "Pójść na siłownie", done: true, category: "gym" },
-  { title: "Nakarmić koty", done: true, category: "work" },
+  { title: "Wyrzucić śmieci", done: false, category: Category.HOBBY },
+  { title: "Pójść na siłownie", done: true, category: Category.GYM },
+  { title: "Nakarmić koty", done: true, category: Category.WORK },
 ];
 
-const categories: Category[] = ["general", "work", "gym", "hobby"];
-
-const renderCategories = () => {
-  categories.forEach((category) => {
-    const categoryElement: HTMLElement = document.createElement("li");
-
-    const radioInputElement: HTMLInputElement = document.createElement("input");
-    radioInputElement.type = "radio";
-    radioInputElement.name = "categories";
-    radioInputElement.value = category;
-    radioInputElement.id = `category-${category}`;
-    radioInputElement.addEventListener("change", () => {
-      selectedCategory = category;
-    });
-
-    const labelElement: HTMLLabelElement = document.createElement("label");
-    labelElement.setAttribute("for", `category-${category}`);
-    labelElement.innerText = category;
-
-    categoryElement.appendChild(radioInputElement);
-    categoryElement.appendChild(labelElement);
-
-    categoriesContainerElement.appendChild(categoryElement);
-  });
-};
+const categories: Category[] = [
+  Category.GENERAL,
+  Category.WORK,
+  Category.GYM,
+  Category.HOBBY,
+  Category.SOCIAL,
+];
 
 const addTask = (task: Task) => {
   tasks.push(task);
+};
+
+const updateSelectedCategory = (newCategory: Category) => {
+  selectedCategory = newCategory;
 };
 
 addButton.addEventListener("click", (event) => {
@@ -59,7 +46,7 @@ addButton.addEventListener("click", (event) => {
     return;
   }
 
-  addText.textContent = "";
+  addText.textContent = "Add";
 
   addTask({
     title: task,
@@ -68,8 +55,22 @@ addButton.addEventListener("click", (event) => {
   });
 
   input.value = "";
-  render(tasks, tasksContainerElement);
+  renderTasks(tasks, tasksContainerElement);
 });
 
-renderCategories();
-render(tasks, tasksContainerElement);
+type TaskAsTuple = [string, Category, boolean];
+
+const task: TaskAsTuple = ["zrobić klatkę", Category.GYM, false];
+
+const taskName = task[0];
+const taskCategory = task[1];
+const taskDoneStatus = task[2];
+
+addTask({ title: taskName, category: taskCategory, done: taskDoneStatus });
+
+renderCategories(
+  categories,
+  categoriesContainerElement,
+  updateSelectedCategory,
+);
+renderTasks(tasks, tasksContainerElement);
